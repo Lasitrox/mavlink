@@ -6520,6 +6520,30 @@
       <field type="uint8_t" name="target_component">Component ID</field>
       <field type="uint32_t" name="format" enum="TUNE_FORMAT" display="bitmask">Bitfield of supported tune formats.</field>
     </message>
+    <message id="402" name="SET_POSE_TARGET_LOCAL_NED">
+      <description>Sets a desired vehicle pose in a local north-east-down coordinate frame. Used by an external controller to command the vehicle (manual controller or other system).</description>
+      <field type="uint32_t" name="time_boot_ms" units="ms">Timestamp (time since system boot).</field>
+      <field type="uint8_t" name="target_system">System ID</field>
+      <field type="uint8_t" name="target_component">Component ID</field>
+      <field type="uint8_t" name="coordinate_frame" enum="MAV_FRAME">Valid options are: MAV_FRAME_LOCAL_NED = 1, MAV_FRAME_LOCAL_OFFSET_NED = 7, MAV_FRAME_BODY_NED = 8, MAV_FRAME_BODY_OFFSET_NED = 9</field>
+      <field type="uint16_t" name="type_mask" enum="POSITION_TARGET_TYPEMASK" display="bitmask">Bitmap to indicate which dimensions should be ignored by the vehicle.</field>
+      <field type="float" name="x" units="m">X Position in NED frame</field>
+      <field type="float" name="y" units="m">Y Position in NED frame</field>
+      <field type="float" name="z" units="m">Z Position in NED frame (note, altitude is negative in NED)</field>
+      <field type="float" name="vx" units="m/s">X velocity in NED frame</field>
+      <field type="float" name="vy" units="m/s">Y velocity in NED frame</field>
+      <field type="float" name="vz" units="m/s">Z velocity in NED frame</field>
+      <field type="float" name="afx" units="m/s/s">X acceleration or force (if bit 10 of type_mask is set) in NED frame in meter / s^2 or N</field>
+      <field type="float" name="afy" units="m/s/s">Y acceleration or force (if bit 10 of type_mask is set) in NED frame in meter / s^2 or N</field>
+      <field type="float" name="afz" units="m/s/s">Z acceleration or force (if bit 10 of type_mask is set) in NED frame in meter / s^2 or N</field>
+      <field type="float[4]" name="q">Attitude quaternion (w, x, y, z order, zero-rotation is 1, 0, 0, 0)</field>
+      <field type="float" name="rr" units="rad/s">roll rate setpoint</field>
+      <field type="float" name="pr" units="rad/s">pitch rate setpoint</field>
+      <field type="float" name="yr" units="rad/s">yaw rate setpoint</field>
+      <field type="float" name="ra" units="rad/s^2">roll acceleration setpoint</field>
+      <field type="float" name="pa" units="rad/s^2">pitch acceleration setpoint</field>
+      <field type="float" name="ya" units="rad/s^2">yaw acceleration setpoint</field>
+    </message>
     <!-- Rover specific messages -->
     <message id="9000" name="WHEEL_DISTANCE">
       <description>Cumulative distance traveled for each reported wheel.</description>
